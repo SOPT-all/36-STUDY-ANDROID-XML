@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="dark_button">#FF888888</color>
+    <color name="dark_dialog_container">#FF666666</color>
+
+    <color name="dark_gray1">#FFCCCCCC</color>
+    <color name="dark_gray2">#FFCCCCCC</color>
+    <color name="dark_gray3">#FFAAAAAA</color>
+    <color name="dark_gray4">#FF888888</color>
+    <color name="dark_gray5">#FF666666</color>
+
+    <color name="dark_basic_black">#FFFFFFFF</color>
+    <color name="dark_basic_white">#FF000000</color>
+    <color name="dark_brand">#FFFF5A6F</color>
+</resources>
