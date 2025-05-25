@@ -5,15 +5,89 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/iv_login_top_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15.dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="back_arrow"
+        android:src="@drawable/ic_back_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="TVING ID 로그인"
+        android:textAppearance="@style/Typography.Pretendard.SemiBold.18"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/iv_login_top_bar"
+        app:layout_constraintTop_toBottomOf="@id/iv_login_top_bar" />
+
+    <EditText
+        android:id="@+id/edit_text_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/textFieldBackground"
+        android:hint="아이디"
+        android:inputType="text"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:minLines="1"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/placeholder"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/tv_login_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title" />
+
+    <EditText
+        android:id="@+id/edit_text_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/textFieldBackground"
+        android:drawableEnd="@drawable/ic_password_invisible"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:minLines="1"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/placeholder"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/edit_text_id"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_id" />
+
+    <TextView
+        android:id="@+id/btn_button"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded_background"
+        android:backgroundTint="@null"
+        android:clipToOutline="true"
+        android:enabled="false"
+        android:gravity="center"
+        android:minHeight="52dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="로그인 하기"
+        android:textColor="@color/lightGray"
+        android:textAppearance="@font/pretendard_medium"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/edit_text_password"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_password" />
 </androidx.constraintlayout.widget.ConstraintLayout>
