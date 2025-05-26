@@ -3,6 +3,7 @@ package com.example.xmlstudy
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +20,9 @@ class SigninActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val signInButton = binding.signInButton
+        val pwEditText = binding.editTextPw
+        val pwToggle = binding.pwVisibilityToggle
+        var isPwVisible = false
 
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -36,6 +40,19 @@ class SigninActivity : AppCompatActivity() {
         binding.editTextId.addTextChangedListener(textWatcher)
         binding.editTextPw.addTextChangedListener(textWatcher)
 
+        pwToggle.setOnClickListener {
+            isPwVisible = !isPwVisible
+
+            pwEditText.inputType =
+                if (isPwVisible) InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                else InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+            pwToggle.setImageResource(
+                if (isPwVisible) R.drawable.baseline_remove_red_eye_24
+                else R.drawable.baseline_visibility_off_24
+            )
+        }
+
         signInButton.setOnClickListener {
             val id = binding.editTextId.text.toString().trim()
             val pw = binding.editTextPw.text.toString().trim()
@@ -48,5 +65,6 @@ class SigninActivity : AppCompatActivity() {
                 Toast.makeText(this, "아이디 또는 비밀번호가 적절하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 }
