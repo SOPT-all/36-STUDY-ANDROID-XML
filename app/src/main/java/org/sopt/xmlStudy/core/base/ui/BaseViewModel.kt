@@ -1,4 +1,4 @@
-package org.sopt.xmlStudy.core.base
+package org.sopt.xmlStudy.core.base.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.sopt.xmlStudy.core.base.ui.Intent
+import org.sopt.xmlStudy.core.base.ui.SideEffect
+import org.sopt.xmlStudy.core.base.ui.UiState
 
 abstract class BaseViewModel<UI_STATE : UiState, INTENT : Intent, SIDE_EFFECT : SideEffect>(
     initialState: UI_STATE
