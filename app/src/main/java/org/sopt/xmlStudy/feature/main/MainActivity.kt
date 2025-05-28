@@ -1,25 +1,19 @@
 package org.sopt.xmlStudy.feature.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import androidx.fragment.app.Fragment
 import org.sopt.xmlStudy.R
 import org.sopt.xmlStudy.databinding.ActivityMainBinding
-import org.sopt.xmlStudy.feature.mypage.MyPageActivity
+import org.sopt.xmlStudy.feature.home.HomeFragment
+import org.sopt.xmlStudy.feature.signin.SignInFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,67 +26,61 @@ class MainActivity : AppCompatActivity() {
                 systemBars.left,
                 systemBars.top,
                 systemBars.right,
-                systemBars.bottom
+                0
             )
             insets
         }
 
-        setIdTextField()
-        setPasswordTextField()
-        setLoginButtonClickListener()
-        observeSideEffect()
-        observeUiState()
+        initBottomNavigationClickListener()
+        replaceFragment(SignInFragment())
     }
 
-    private fun observeSideEffect() {
-        lifecycleScope.launch {
-            viewModel.sideEffect.collectLatest { sideEffect ->
-                when (sideEffect) {
-                    MainSideEffect.NavigateToLogin -> {
-                        val intent = Intent(this@MainActivity, MyPageActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-
-                    MainSideEffect.FailureLogin -> {
-                        Toast.makeText(this@MainActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
-                    }
+    private fun initBottomNavigationClickListener() {
+        binding.bnvMain.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_home -> {
+                    replaceFragment(HomeFragment())
+                    true
                 }
+
+                R.id.navigation_shorts -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+
+                R.id.navigation_live -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+
+                R.id.navigation_search -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+
+                R.id.navigation_history -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+
+                else -> false
             }
         }
     }
 
-    private fun observeUiState() {
-        lifecycleScope.launch {
-            viewModel.uiState.collectLatest { state ->
-                val enabled = state.id.isNotBlank() && state.password.isNotBlank()
-                updateLoginButtonState(enabled)
-            }
+    internal fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fcv_main, fragment)
+            .commit()
+
+        if (fragment is SignInFragment) {
+            showBottomNav(false)
+        } else {
+            showBottomNav(true)
         }
     }
 
-    private fun updateLoginButtonState(enabled: Boolean) = binding.btnButton.run {
-        isEnabled = enabled
-        val bgColorRes = if (enabled) R.color.buttonSuccess else R.color.buttonBackground
-        val textColorRes = if (enabled) R.color.white else R.color.lightGray
-
-        setBackgroundColor(ContextCompat.getColor(context, bgColorRes))
-        setTextColor(ContextCompat.getColor(context, textColorRes))
-    }
-
-    private fun setIdTextField() = binding.editTextId.apply {
-        doAfterTextChanged {
-            viewModel.sendIntent(MainIntent.UpdateId(it.toString()))
-        }
-    }
-
-    private fun setPasswordTextField() = binding.editTextPassword.apply {
-        doAfterTextChanged {
-            viewModel.sendIntent(MainIntent.UpdatePw(it.toString()))
-        }
-    }
-
-    private fun setLoginButtonClickListener() = binding.btnButton.setOnClickListener {
-        viewModel.sendIntent(MainIntent.Login)
+    fun showBottomNav(show: Boolean) {
+        binding.bnvMain.visibility = if (show) View.VISIBLE else View.GONE
     }
 }

@@ -1,18 +1,21 @@
 package org.sopt.xmlStudy.feature.main
 
-import org.sopt.xmlStudy.core.base.BaseViewModel
+import org.sopt.xmlStudy.core.base.ui.BaseViewModel
+import org.sopt.xmlStudy.feature.signin.SignInIntent
+import org.sopt.xmlStudy.feature.signin.SignInSideEffect
+import org.sopt.xmlStudy.feature.signin.SignInState
 
-class MainViewModel : BaseViewModel<MainState, MainIntent, MainSideEffect>(MainState()) {
+class MainViewModel : BaseViewModel<SignInState, SignInIntent, SignInSideEffect>(SignInState()) {
 
-    override fun handleIntent(intent: MainIntent) {
+    override fun handleIntent(intent: SignInIntent) {
         when (intent) {
-            is MainIntent.UpdateId -> reduce { copy(id = intent.id) }
-            is MainIntent.UpdatePw -> reduce { copy(password = intent.password) }
-            is MainIntent.Login -> {
+            is SignInIntent.UpdateId -> reduce { copy(id = intent.id) }
+            is SignInIntent.UpdatePw -> reduce { copy(password = intent.password) }
+            is SignInIntent.Login -> {
                 if (currentState.id.isNotBlank() && currentState.password.isNotBlank()) {
-                    postSideEffect(MainSideEffect.NavigateToLogin)
+                    postSideEffect(SignInSideEffect.NavigateToLogin)
                 } else {
-                    postSideEffect(MainSideEffect.FailureLogin)
+                    postSideEffect(SignInSideEffect.FailureLogin)
                 }
             }
         }
