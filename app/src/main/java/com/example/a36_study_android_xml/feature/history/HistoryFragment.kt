@@ -1,4 +1,4 @@
-package com.example.a36_study_android_xml
+package com.example.a36_study_android_xml.feature.history
 
 import android.os.Bundle
 import android.view.LayoutInflater

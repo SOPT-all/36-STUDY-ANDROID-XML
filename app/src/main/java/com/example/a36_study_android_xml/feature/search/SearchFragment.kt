@@ -1,22 +1,22 @@
-package com.example.a36_study_android_xml
+package com.example.a36_study_android_xml.feature.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.a36_study_android_xml.databinding.FragmentShortsBinding
+import com.example.a36_study_android_xml.databinding.FragmentSearchBinding
 
-class ShortsFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private lateinit var binding: FragmentShortsBinding
+    private lateinit var binding: FragmentSearchBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentShortsBinding.inflate(inflater, container, false)
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 }

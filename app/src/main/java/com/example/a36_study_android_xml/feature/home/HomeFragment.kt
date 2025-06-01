@@ -1,4 +1,4 @@
-package com.example.a36_study_android_xml
+package com.example.a36_study_android_xml.feature.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.a36_study_android_xml.feature.my.MyFragment
+import com.example.a36_study_android_xml.R
 import com.example.a36_study_android_xml.databinding.FragmentHomeBinding
+import com.example.a36_study_android_xml.feature.main.MainActivity
 
 class HomeFragment : Fragment() {
 
@@ -23,14 +26,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profileClick()
+        navigateToMy()
     }
 
-    private fun profileClick() {
+    private fun navigateToMy() {
         binding.homeProfileIv.setOnClickListener {
-            parentFragmentManager.commit {
-                add(R.id.main_fcv, MyFragment())
-            }
+            (requireActivity() as? MainActivity)?.navigateToMy()
         }
     }
 }

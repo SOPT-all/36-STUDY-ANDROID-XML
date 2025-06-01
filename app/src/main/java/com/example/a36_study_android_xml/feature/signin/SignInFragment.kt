@@ -1,4 +1,4 @@
-package com.example.a36_study_android_xml
+package com.example.a36_study_android_xml.feature.signin
 
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import com.example.a36_study_android_xml.feature.main.MainActivity
+import com.example.a36_study_android_xml.R
 import com.example.a36_study_android_xml.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
@@ -66,8 +68,7 @@ class SignInFragment : Fragment() {
         val pw = binding.siginPwEdittext.text.toString()
 
         if (id == "tving123" && pw == "password") {
-            showToast("로그인 성공!")
-            navigateToMain()
+            onLoginSuccess()
         } else {
             showToast("아이디 또는 비밀번호가 올바르지 않습니다.")
         }
@@ -78,10 +79,8 @@ class SignInFragment : Fragment() {
         Toast.makeText(this.activity, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun navigateToMain() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity(intent)
-        requireActivity().finish()
+    private fun onLoginSuccess() {
+        (requireActivity() as? MainActivity)?.navigateToHome()
     }
 
 }
