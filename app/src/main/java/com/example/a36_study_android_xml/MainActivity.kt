@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import com.example.a36_study_android_xml.databinding.ActivityMainBinding
-import com.example.a36_study_android_xml.databinding.FragmentHomeBinding
 
 class MainActivity : AppCompatActivity() {
 

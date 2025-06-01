@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.a36_study_android_xml.databinding.FragmentHomeBinding
 import com.example.a36_study_android_xml.databinding.FragmentShortsBinding
 
 class ShortsFragment : Fragment() {
