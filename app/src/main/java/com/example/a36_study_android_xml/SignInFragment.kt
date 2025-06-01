@@ -3,31 +3,30 @@ package com.example.a36_study_android_xml
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
-import com.example.a36_study_android_xml.databinding.ActivitySignInBinding
+import androidx.fragment.app.Fragment
+import com.example.a36_study_android_xml.databinding.FragmentSignInBinding
 
-class SignInActivity : AppCompatActivity() {
+class SignInFragment : Fragment() {
 
-    private lateinit var binding: ActivitySignInBinding
+    private lateinit var binding: FragmentSignInBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentSignInBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding = ActivitySignInBinding.inflate(layoutInflater)
-
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initListener()
         updateLoginButtonState()
     }
@@ -46,9 +45,19 @@ class SignInActivity : AppCompatActivity() {
 
         binding.siginLoginBtn.isEnabled = isValid
 
-        binding.siginLoginBtn.setTextColor(getColor(if (isValid) android.R.color.white else R.color.gray500))
+        binding.siginLoginBtn.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                if (isValid) android.R.color.white else R.color.gray500
+            )
+        )
         binding.siginLoginBtn.backgroundTintList =
-            ColorStateList.valueOf(getColor(if (isValid) R.color.tintRed else R.color.gray800))
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    if (isValid) R.color.tintRed else R.color.gray800
+                )
+            )
     }
 
 
@@ -66,12 +75,13 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.activity, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun navigateToMain() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(requireContext(), MainActivity::class.java)
         startActivity(intent)
-        finish()
+        requireActivity().finish()
     }
+
 }
