@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">XmlStudy</string>
+
+    <string name="back_button">뒤로 가기</string>
+    <string name="eyes_icon">비밀번호 숨기기보이기</string>
+    <string name="login_button">로그인하기</string>
+
+    <string name="search_id">아이디 찾기</string>
+    <string name="search_password">비밀번호 찾기</string>
+    <string name="register_text">회원가입</string>
+
+    <string name="divider">|</string>
+
+    <string name="privacy_policy_text">
+        이 사이트는 Google reCAPCHA로 보호되며,\n
+        <u>Google 개인정보 처리방침</u>과 <u>서비스 약관</u>이 적용됩니다.
+    </string>
+
+    <string name="login_description">TVING ID 로그인</string>
+    <string name="id_hint">아이디</string>
+    <string name="password_hint">비밀번호</string>
+
+    <string name="move">이동완료~</string>
+
+</resources>
