@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:visible="true"
+        android:title="HOME" />
+    <item
+        android:id="@+id/shorts"
+        android:icon="@drawable/shorts"
+        android:visible="true"
+        android:title="SHORTS" />
+    <item
+        android:id="@+id/live"
+        android:icon="@drawable/live"
+        android:visible="true"
+        android:title="LIVE" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/search"
+        android:visible="true"
+        android:title="SEARCH" />
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/history"
+        android:visible="true"
+        android:title="HISTORY" />
+</menu>
