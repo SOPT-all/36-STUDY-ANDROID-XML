@@ -19,7 +19,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/home_fragment_container_view"
-        android:name="com.example.xmlstudy.HomeActivity"
+        android:name="com.example.xmlstudy.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
