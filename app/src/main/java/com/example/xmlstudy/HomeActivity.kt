@@ -1,61 +1,68 @@
 package com.example.xmlstudy
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.xmlstudy.databinding.ActivityHomeBinding
-import com.example.xmlstudy.ui.theme.XMLSTUDYTheme
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.fragment_home)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        if (savedInstanceState == null) {
+            val fragment = SigninFragment()
+            supportFragmentManager.commit {
+                replace(R.id.fragment_container_view, fragment)
+            }
+            updateBottomNavVisibility(fragment)
+        }
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            val currentFragment =
+                supportFragmentManager.findFragmentById(R.id.fragment_container_view)
+            currentFragment?.let { updateBottomNavVisibility(it) }
+        }
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> {
-                    supportFragmentManager.commit {
-                        replace(R.id.fragment_container_view, HomeFragment())
-                    }
+                    replaceFragment(HomeFragment())
                     true
                 }
 
                 R.id.menu_shorts -> {
-                    supportFragmentManager.commit {
-                        replace(R.id.fragment_container_view, ShortsFragment())
-                    }
+                    replaceFragment(ShortsFragment())
                     true
                 }
 
                 R.id.menu_live -> {
-                    supportFragmentManager.commit {
-                        replace(R.id.fragment_container_view, LiveFragment())
-                    }
+                    replaceFragment(LiveFragment())
                     true
                 }
 
                 R.id.menu_search -> {
-                    supportFragmentManager.commit {
-                        replace(R.id.fragment_container_view, SearchFragment())
-                    }
+                    replaceFragment(SearchFragment())
                     true
                 }
 
                 R.id.menu_history -> {
-                    supportFragmentManager.commit {
-                        replace(R.id.fragment_container_view, HistoryFragment())
-                    }
+                    replaceFragment(HistoryFragment())
                     true
                 }
 
@@ -66,20 +73,29 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-}
 
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    fun navigateToHome() {
+        replaceFragment(HomeFragment())
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    XMLSTUDYTheme {
-        Greeting2("Android")
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            replace(R.id.fragment_container_view, fragment)
+        }
+        updateBottomNavVisibility(fragment)
+    }
+
+    private fun updateBottomNavVisibility(fragment: Fragment) {
+        val isVisible =
+            when (fragment) {
+                is HomeFragment,
+                is ShortsFragment,
+                is SearchFragment,
+                is LiveFragment,
+                is HistoryFragment -> true
+
+                else -> false
+            }
+        binding.bottomNav.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 }
