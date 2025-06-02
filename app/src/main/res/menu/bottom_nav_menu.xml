@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/home_text" />
+    <item
+        android:id="@+id/menu_shorts"
+        android:icon="@drawable/icons8_youtube_shorts"
+        android:title="@string/shorts_text" />
+    <item
+        android:id="@+id/menu_live"
+        android:icon="@drawable/live_svgrepo_com"
+        android:title="@string/live_text" />
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/search_svgrepo_com"
+        android:title="@string/search_text" />
+    <item
+        android:id="@+id/menu_history"
+        android:icon="@drawable/history_svgrepo_com"
+        android:title="@string/history_text" />
+</menu>

@@ -57,7 +57,7 @@ class SigninActivity : AppCompatActivity() {
             val id = binding.editTextId.text.toString().trim()
             val pw = binding.editTextPw.text.toString().trim()
             if (id == "lim1234" && pw == "@lim1234") {
-                val intent = Intent(this, MyActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 intent.putExtra("id", id)
                 startActivity(intent)
                 finish()

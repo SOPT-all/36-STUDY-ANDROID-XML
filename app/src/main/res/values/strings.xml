@@ -9,9 +9,9 @@
     <string name="title_activity_my">MyActivity</string>
     <string name="title_activity_home">HomeActivity</string>
 
-    <string name="home_text">home</string>
-    <string name="shorts_text">shorts</string>
-    <string name="live_text">live</string>
-    <string name="search_text">search</string>
-    <string name="history_text">history</string>
+    <string name="home_text">HOME</string>
+    <string name="shorts_text">SHORTS</string>
+    <string name="live_text">LIVE</string>
+    <string name="search_text">SEARCH</string>
+    <string name="history_text">HISTORY</string>
 </resources>

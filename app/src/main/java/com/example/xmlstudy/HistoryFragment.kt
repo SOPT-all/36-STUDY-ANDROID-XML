@@ -12,6 +12,6 @@ class HistoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_history, container, true)
+        return inflater.inflate(R.layout.fragment_history, container, false)
     }
 }
