@@ -13,19 +13,20 @@
         android:theme="@style/Theme.XMLSTUDY"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.XMLSTUDY">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MyActivity"
             android:exported="false"
             android:label="@string/title_activity_my"
             android:theme="@style/Theme.XMLSTUDY" />
-        <activity
-            android:name=".SigninActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
