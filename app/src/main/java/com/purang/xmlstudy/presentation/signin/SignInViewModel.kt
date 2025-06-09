@@ -1,4 +1,4 @@
-package com.purang.xmlstudy.signin
+package com.purang.xmlstudy.presentation.signin
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
