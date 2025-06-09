@@ -27,7 +27,7 @@ class HomeContentsItemAdapter(
         holder: HomeContentsItemViewHolder,
         position: Int
     ) {
-        holder.bind(item = items[position], index = position)
+        holder.bind(item = items[position])
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +36,7 @@ class HomeContentsItemAdapter(
 
     inner class HomeContentsItemViewHolder(private val binding: HomeContentsRcvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: HomeRcvContentsItem, index: Int) {
+        fun bind(item: HomeRcvContentsItem) {
             binding.homeContentsRcvItemIv.setImageResource(item.image)
 
             if (isIndexing) {
