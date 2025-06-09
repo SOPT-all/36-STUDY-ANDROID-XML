@@ -30,5 +30,6 @@
     <string name="home">HOME</string>
     <string name="logo">logo</string>
     <string name="profile">profile</string>
+    <string name="item_iv">item_iv</string>
 
 </resources>
