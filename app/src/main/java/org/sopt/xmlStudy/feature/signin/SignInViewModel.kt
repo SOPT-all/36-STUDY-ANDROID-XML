@@ -1,11 +1,9 @@
-package org.sopt.xmlStudy.feature.main
+package org.sopt.xmlStudy.feature.signin
 
 import org.sopt.xmlStudy.core.base.ui.BaseViewModel
-import org.sopt.xmlStudy.feature.signin.SignInIntent
-import org.sopt.xmlStudy.feature.signin.SignInSideEffect
-import org.sopt.xmlStudy.feature.signin.SignInState
 
-class MainViewModel : BaseViewModel<SignInState, SignInIntent, SignInSideEffect>(SignInState()) {
+
+class SignInViewModel : BaseViewModel<SignInState, SignInIntent, SignInSideEffect>(SignInState()) {
 
     override fun handleIntent(intent: SignInIntent) {
         when (intent) {
